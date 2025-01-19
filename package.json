@@ -1,0 +1,52 @@
+{
+    "name": "@pilchd/fae",
+    "version": "0.1.0",
+    "description": "Fast ADIF entry: a nimble language for amateur radio logging",
+    "keywords": [
+        "amateur",
+        "ham",
+        "radio",
+        "log",
+        "ADIF"
+    ],
+    "homepage": "https://github.com/pilchd/fae",
+    "bugs": "https://github.com/pilchd/fae/issues",
+    "license": "MIT",
+    "author": "Nic Pilcher <nic@pilchd.com> (https://pilchd.com/)",
+    "files": [
+        "dist/",
+        "!dist/**/*.spec.*"
+    ],
+    "exports": {
+        "import": "./dist/index.js"
+    },
+    "bin": "dist/bin.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/pilchd/fae.git"
+    },
+    "scripts": {
+        "lint": "prettier -c .",
+        "parser-generator": "peggy --dts -o dist/parser.js --allowed-start-rules fae --format es src/compiler/grammar/*.peggy src/compiler/grammar/adif/*.peggy",
+        "postparser-generator": "ln -fs ../dist/parser.js ../dist/parser.d.ts src/",
+        "prebuild": "npm run parser-generator",
+        "build": "tsc",
+        "pretest": "npm run parser-generator",
+        "test": "node --test 'src/**/*.spec.ts'",
+        "clean": "rm -rf dist/ src/parser.js src/parser.d.ts"
+    },
+    "dependencies": {
+        "commander": "^13.0.0"
+    },
+    "devDependencies": {
+        "@types/assert": "^1.5.11",
+        "@types/node": "^22.10.5",
+        "peggy": "4.2.0",
+        "prettier": "^3.4.2",
+        "typescript": "^5.7.3"
+    },
+    "engines": {
+        "node": "23.6"
+    },
+    "type": "module"
+}

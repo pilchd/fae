@@ -1,0 +1,5 @@
+dist/
+node_modules/
+
+src/parser.d.ts
+src/parser.js
