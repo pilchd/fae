@@ -1,6 +1,6 @@
 {
     "name": "@pilchd/fae",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Fast ADIF entry: a nimble language for amateur radio logging",
     "keywords": [
         "amateur",
