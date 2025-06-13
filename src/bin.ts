@@ -1,32 +1,26 @@
 #!/usr/bin/env node
 
-import * as readline from "node:readline/promises";
+import fs from "node:fs";
 
 import {program} from "commander";
 
-import {compile} from "./index.ts";
+import {CompilerError, compile} from "./index.ts";
 
-program.name("fae").description("CLI frontend for fae");
-program.parse();
+program
+    .name("fae")
+    .description("CLI frontend for fae")
+    .argument("[string]", "input file")
+    .parse();
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-});
-const input: string[] = [];
-rl.on("line", line => input.push(line));
+const input = fs.readFileSync(program.args[0] ?? process.stdin.fd, "utf8");
 
-rl.once("close", () => {
-    try {
-        for (const line of compile(input.join("\n"))) {
-            console.log(line);
-        }
-    } catch (e) {
-        if (e instanceof SyntaxError) {
-            process.stderr.write(e.message + "\n");
-            process.exit();
-        }
-        throw e;
+try {
+    for (const line of compile(input).adi) process.stdout.write(line + "\n");
+} catch (e) {
+    if (e instanceof CompilerError) {
+        process.stderr.write(e.format(input, {name: "stdin"}) + "\n");
+        process.exit(1);
     }
-});
+
+    throw e;
+}

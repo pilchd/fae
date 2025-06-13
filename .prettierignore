@@ -1,3 +1,5 @@
+test/_asset/
 .github/workflows/npm.yaml
-src/index.ts
+src/adif/enumeration.ts
+
 README.md

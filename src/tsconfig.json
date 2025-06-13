@@ -1,0 +1,10 @@
+{
+    "extends": "../tsconfig.json",
+
+    "include": ["**/*"],
+    "compilerOptions": {
+        "composite": true,
+        "rewriteRelativeImportExtensions": true,
+        "tsBuildInfoFile": "../.src.tsbuildinfo"
+    }
+}

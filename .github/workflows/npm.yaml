@@ -1,11 +1,9 @@
 name: npm
 on:
   push:
-    branches:
-      - "**"
+    branches: ["**"]
   release:
-    types:
-      - published
+    types: [published]
 
 jobs:
 
@@ -54,11 +52,11 @@ jobs:
       - run: npm pack
 
       - id: pack
-        run: echo artifact=$(basename $(npm pack) .tgz) >> "$GITHUB_OUTPUT"
+        run: echo package=$(basename $(npm pack) .tgz) >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{steps.pack.outputs.artifact}}
+          name: ${{steps.pack.outputs.package}}
           path: "*.tgz"
 
   publish:
@@ -83,4 +81,4 @@ jobs:
 
       - env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
-        run: npm publish --provenance --access public file:$(find -type f -name '*.tgz')
+        run: npm publish --provenance --access public $(find -type f -name '*.tgz')

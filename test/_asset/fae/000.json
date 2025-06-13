@@ -1,0 +1,26 @@
+{
+  "fields": [],
+  "statements": [
+    {
+      "node": "record",
+      "fl": [
+        {
+          "node": "name",
+          "locator": {
+            "start": 2,
+            "end": 6
+          },
+          "name": "CALL"
+        },
+        {
+          "node": "data",
+          "locator": {
+            "start": 7,
+            "end": 11
+          },
+          "data": "W1AW"
+        }
+      ]
+    }
+  ]
+}

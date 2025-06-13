@@ -1,5 +1,6 @@
 dist/
 node_modules/
-
-src/parser.d.ts
-src/parser.js
+src/compiler/parser.js
+src/compiler/parser.d.ts
+*.tgz
+*.tsbuildinfo

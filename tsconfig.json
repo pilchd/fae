@@ -1,13 +1,14 @@
 {
-    "include": ["src/**/*.ts"],
-
     "compilerOptions": {
         "allowImportingTsExtensions": true,
         "declaration": true,
         "module": "nodenext",
         "noImplicitAny": true,
         "outDir": "dist/",
-        "rewriteRelativeImportExtensions": true,
+        "sourceMap": true,
         "strict": true
-    }
+    },
+
+    "files": [],
+    "references": [{"path": "src/"}, {"path": "test/"}]
 }
